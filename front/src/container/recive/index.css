@@ -1,0 +1,57 @@
+.recive-divider {
+  display: block;
+  border: none;
+  width: 100%;
+  margin: 0;
+  height: 1px;
+  background-color: #e9e8eb;
+  margin: 20px 0;
+}
+.amount-label {
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: #000;
+  margin-bottom: 12px;
+}
+.amount-input {
+  border: 1px solid #e9e8eb;
+  border-radius: 12px;
+  padding: 20px 16px;
+  width: 100%;
+  height: 54px;
+  background-color: #fff;
+}
+.payment-system-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.payment-system-title {
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: #000;
+}
+.payment-system-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 12px;
+  background-color: #fff;
+  padding: 16px;
+}
+.payment-system-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.payment-system-text {
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: #1d1d1f;
+}

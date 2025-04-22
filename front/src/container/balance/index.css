@@ -1,0 +1,36 @@
+.balance-background-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.balance-header {
+  z-index: 2;
+}
+.balance-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0 16px 0;
+}
+.balance-nav-title {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  text-align: center;
+  color: #f3f5ff;
+}
+.balance-status-balance {
+  font-family: "Jost", sans-serif;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 100%;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+}
+.balance-operations {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}

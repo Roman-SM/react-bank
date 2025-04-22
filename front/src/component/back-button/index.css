@@ -1,0 +1,25 @@
+.back-button-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  justify-content: center;
+  margin-top: 8px;
+}
+.back-button.retreat {
+  margin-bottom: 32px;
+}
+.back-button-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+.back-button-title {
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  text-align: center;
+  color: #1d1d1f;
+}

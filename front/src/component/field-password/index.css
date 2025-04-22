@@ -1,0 +1,37 @@
+.field-password {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.field-password-label {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+}
+.field-password-input {
+  border: 1px solid #e9e8eb;
+  border-radius: 12px;
+  padding: 20px 16px;
+  height: 54px;
+  transition: border-color 0.3s;
+}
+.field-password-input:hover {
+  border-color: #808080;
+}
+.field-password-input:focus {
+  border-color: #775ce5;
+}
+.field-password-label.field-password-label-error {
+  color: red;
+}
+.field-password-input.field-password-input-error {
+  border: 1px solid red;
+  color: red;
+}
+.field-password-text-error {
+  margin-top: 10px;
+  color: red;
+}

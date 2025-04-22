@@ -1,0 +1,26 @@
+.button-container {
+  border-radius: 12px;
+  padding: 20px 40px;
+  width: 353px;
+  height: 56px;
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  text-align: center;
+}
+.btn.filled {
+  background-color: #775ce5;
+  color: white;
+  border: none;
+}
+.btn.outline {
+  background-color: white;
+  color: #775ce5;
+  border: 1px solid #775ce5;
+}
+.btn.outline-red {
+  background-color: white;
+  color: #f23152;
+  border: 1px solid #f23152;
+}

@@ -1,0 +1,45 @@
+.title.container {
+  padding-top: 54px;
+  /* position: relative; */
+  display: grid;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.title.container-text {
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  text-align: center;
+  color: #121212;
+}
+.title.container-description {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  text-align: center;
+  color: #939199;
+}
+.title.welcome-page-container {
+  padding-top: 54px;
+  position: relative;
+  display: grid;
+  gap: 16px;
+}
+.title.welcome-page-text {
+  font-family: "Jost", sans-serif;
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 100%;
+  text-align: center;
+  color: #fff;
+}
+.title.welcome-page-description {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%;
+  text-align: center;
+  color: #fff;
+}
