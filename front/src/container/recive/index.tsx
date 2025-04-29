@@ -3,72 +3,117 @@ import Page from "../../component/page";
 import BackButton from "../../component/back-button";
 import StatusBar from "../../component/status-bar";
 import Divider from "../../component/divider";
-import reciveCoinbace from "./recive-coinbace.svg";
-import reciveStripe from "./recive-stripe.svg";
-import coinbace from "./coinbace.svg";
-import stripe from "./stripe.svg";
+import PaymentSystem from "../../component/payment-system";
+import FieldCode from "../../component/field-code";
+import { useAuth } from "../../util/useAuth";
+import { useEffect, useReducer } from "react";
+import { useValidate } from "../../util/validation";
+import { Alert } from "../../component/load";
+import {
+  requestInitialState,
+  requestReducer,
+  REQUEST_ACTION_TYPE,
+} from "../../util/request";
 
 const data = {
   title: "Receive",
   amount: {
     title: "Receive amount",
-    type: "text",
-    name: "Amount",
-  },
-  payment: {
-    title: "Payment system",
-    textStripe: "Stripe",
-    textCoinbase: "Coinbase",
+    name: "sum",
   },
 } as const;
 
-const Amount = () => {
-  return (
-    <div>
-      <label htmlFor={data.amount.name} className="amount-label">
-        {data.amount.title}
-      </label>
-      <input
-        type={data.amount.type}
-        name={data.amount.name}
-        className="amount-input"
-      />
-    </div>
-  );
-};
-
-const PaymentSystem = () => {
-  return (
-    <div className="payment-system-container">
-      <span className="payment-system-title">{data.payment.title}</span>
-      <div className="payment-system-left">
-        <div className="payment-system-item">
-          <img src={coinbace} alt={data.payment.textCoinbase} />
-          <span className="payment-system-text">
-            {data.payment.textCoinbase}
-          </span>
-        </div>
-        <img src={reciveCoinbace} alt={data.payment.textCoinbase} />
-      </div>
-      <div className="payment-system-left">
-        <div className="payment-system-item">
-          <img src={stripe} alt={data.payment.textStripe} />
-          <span className="payment-system-text">{data.payment.textStripe}</span>
-        </div>
-        <img src={reciveStripe} alt={data.payment.textStripe} />
-      </div>
-    </div>
-  );
-};
-
 export default function Component() {
+  const [state, dispatch] = useReducer(requestReducer, requestInitialState);
+
+  useEffect(() => {
+    document.title = "Recive";
+  }, []);
+  const { states } = useAuth();
+
+  const { formData, handleChange, resetForm } = useValidate({
+    sum: "",
+  });
+
+  const handleReciveCoinbase = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("http://localhost:4000/recive-coinbase", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          sum: formData.sum,
+          email: states.user?.email,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        dispatch({ type: REQUEST_ACTION_TYPE.RESET });
+        resetForm();
+      } else {
+        dispatch({ type: REQUEST_ACTION_TYPE.ERROR, payload: data.message });
+      }
+    } catch (error: any) {
+      dispatch({
+        type: REQUEST_ACTION_TYPE.ERROR,
+        payload: error.message,
+      });
+    }
+  };
+
+  const handleReciveStripe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("http://localhost:4000/recive-stripe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          sum: formData.sum,
+          email: states.user?.email,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        dispatch({ type: REQUEST_ACTION_TYPE.RESET });
+        resetForm();
+      } else {
+        dispatch({ type: REQUEST_ACTION_TYPE.ERROR, payload: data.message });
+      }
+    } catch (error: any) {
+      dispatch({
+        type: REQUEST_ACTION_TYPE.ERROR,
+        payload: error.message,
+      });
+    }
+  };
+
   return (
     <Page variant="gray">
       <StatusBar img="statusBarBlack" />
       <BackButton title={data.title} retreat="retreat" />
-      <Amount />
+      <FieldCode
+        variant="white"
+        text={data.amount.title}
+        value={formData.sum}
+        onChange={handleChange}
+        name={data.amount.name}
+        placeholder="Enter sum"
+      />
       <Divider variant="big" />
-      <PaymentSystem />
+      <PaymentSystem
+        typeCoinbase={handleReciveCoinbase}
+        typeStripe={handleReciveStripe}
+        disabled={!Object.values(formData).every((val) => val.trim() !== "")}
+      />
+      {state.status === REQUEST_ACTION_TYPE.ERROR && (
+        <Alert status={state.status} message={state.message} />
+      )}
     </Page>
   );
 }

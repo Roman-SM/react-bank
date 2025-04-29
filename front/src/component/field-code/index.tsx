@@ -23,7 +23,8 @@ export default function Component({
         {text}
       </label>
       <input
-        type="text"
+        type="number"
+        id={name}
         name={name}
         value={value}
         className={`field-code-input field-code-background ${variant}`}

@@ -6,6 +6,7 @@ import BackgroundImage from "./background-image.svg";
 import StatusBar from "../../component/status-bar";
 import Safe from "./safe.svg";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const data = {
   title: {
@@ -22,16 +23,21 @@ const data = {
 const Buttons = () => {
   return (
     <div className="welcome-page-buttons">
-      <Link to="/signup">
+      <Link to="/signup" className="welcome-page-buttons-link">
         <Button variant="filled" text={data.button.signup} />
       </Link>
-      <Link to="/signin">
+      <Link to="/signin" className="welcome-page-buttons-link">
         <Button text={data.button.signin} />
       </Link>
     </div>
   );
 };
+
 const WelcomePage = () => {
+  useEffect(() => {
+    document.title = "Welcome Page";
+  }, []);
+
   return (
     <div className="welcome-page-container">
       <img
@@ -54,7 +60,7 @@ const WelcomePage = () => {
 
 export default function Component() {
   return (
-    <Page>
+    <Page variant="white">
       <StatusBar img="statusBarWhite" />
       <WelcomePage />
     </Page>

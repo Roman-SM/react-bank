@@ -2,41 +2,27 @@ import "./index.css";
 import announcement from "./announcement.svg";
 import warning from "./warning.svg";
 
-type BalanceList = {
-  title: string;
-  imageType: "announcement" | "warning";
-  date?: string | number;
-  typeOperation: "Announcement" | "Warning";
+type NotificationList = {
+  date: string;
+  type: string;
+  text: string;
 };
 
-const imageMap = {
-  announcement: {
-    src: announcement,
-    alt: "Announcement image",
-  },
-  warning: {
-    src: warning,
-    alt: "Warning image",
-  },
+const icons: Record<string, string> = {
+  Announcement: announcement,
+  Warning: warning,
 };
 
-export default function Component({
-  title,
-  imageType,
-  date,
-  typeOperation,
-}: BalanceList) {
-  const { src, alt } = imageMap[imageType];
-
+export default function Component({ date, type, text }: NotificationList) {
   return (
     <div className="notification-list-container">
       <div className="notification-list-left">
-        <img src={src} alt={alt} />
+        <img src={icons[type]} alt={type} />
         <div className="notification-list-info">
-          <span className="notification-list-title">{title}</span>
+          <span className="notification-list-title">{text}</span>
           <div className="notification-list-descr">
             <span className="notification-list-date">{date}</span>
-            <span>{typeOperation}</span>
+            <span>{type}</span>
           </div>
         </div>
       </div>

@@ -29,14 +29,6 @@ function App() {
             }
           />
           <Route
-            path="/test"
-            element={
-              <AuthRoute>
-                <SettingsPage />
-              </AuthRoute>
-            }
-          />
-          <Route
             path="/signup"
             element={
               <AuthRoute>

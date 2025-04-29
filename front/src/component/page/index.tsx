@@ -5,11 +5,7 @@ export default function Component({
   variant,
 }: {
   children: React.ReactNode;
-  variant?: "gray" | "white";
+  variant: "gray" | "white";
 }) {
-  return (
-    <div className={`page page-background ${(variant = "white")}`}>
-      {children}
-    </div>
-  );
+  return <div className={`page page-background ${variant}`}>{children}</div>;
 }

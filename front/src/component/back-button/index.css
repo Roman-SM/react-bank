@@ -16,10 +16,8 @@
   cursor: pointer;
 }
 .back-button-title {
-  font-family: "Jost", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 120%;
   text-align: center;
-  color: #1d1d1f;
 }

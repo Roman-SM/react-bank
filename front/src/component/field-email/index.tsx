@@ -30,6 +30,7 @@ export default function Component({
       <input
         type="email"
         name={name}
+        id={name}
         className={
           error
             ? "field-email-input-error field-email-input"

@@ -4,11 +4,7 @@
   width: 100%;
 }
 .field-email-label {
-  font-family: "Jost", sans-serif;
-  font-weight: 400;
   font-size: 14px;
-  line-height: 100%;
-  color: #1d1d1f;
   margin-bottom: 8px;
 }
 .field-email-input {
@@ -16,7 +12,6 @@
   border-radius: 12px;
   padding: 20px 16px;
   height: 54px;
-  color: #1d1d1f;
 }
 .field-email-input:hover {
   border-color: #808080;

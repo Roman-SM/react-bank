@@ -1,9 +1,11 @@
-import { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "../auth-provider"; // або шлях до твого контексту
+import { useAuth } from "../../util/useAuth";
 
 export default function Component({ children }: { children: JSX.Element }) {
-  const { state } = useContext(AuthContext);
+  const { states } = useAuth();
+  if (states.token) {
+    return <Navigate to="/balance" replace />;
+  }
 
-  return state.token ? <Navigate to="/balance" replace /> : <>{children}</>;
+  return children;
 }
