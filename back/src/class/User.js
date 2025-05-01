@@ -2,15 +2,15 @@ class User {
   static #list = []
   static #count = 1
 
-  constructor(email, password) {
+  constructor(email, password, isConfirm) {
     this.id = User.#count++
     this.email = String(email).toLowerCase()
     this.password = String(password)
-    this.balance = 1000
-    this.isConfirm = false
+    this.balance = 0
+    this.isConfirm = isConfirm
   }
-  static create(email, password) {
-    const user = new User(email, password)
+  static create(email, password, isConfirm) {
+    const user = new User(email, password, isConfirm)
     this.#list.push(user)
     return user
   }

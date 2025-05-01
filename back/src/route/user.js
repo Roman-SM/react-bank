@@ -11,27 +11,42 @@ const users = {
   user1: {
     email: 'user@mail.com',
     password: '123QWEqwe',
+    isConfirm: true,
   },
   user2: {
     email: 'admin@mail.com',
     password: '123QWEqwe',
+    isConfirm: true,
   },
   user3: {
     email: 'developer@mail.com',
     password: '123QWEqwe',
+    isConfirm: true,
   },
 }
 
-User.create(users.user1.email, users.user1.password)
-User.create(users.user2.email, users.user2.password)
-User.create(users.user3.email, users.user3.password)
+User.create(
+  users.user1.email,
+  users.user1.password,
+  users.user1.isConfirm,
+)
+User.create(
+  users.user2.email,
+  users.user2.password,
+  users.user2.isConfirm,
+)
+User.create(
+  users.user3.email,
+  users.user3.password,
+  users.user3.isConfirm,
+)
 
 router.post('/signup', function (req, res) {
   const { email, password } = req.body
   if (!email || !password) {
     return res.status(400).json({
       message:
-        'Потрібно передати всі дані для створення користувача',
+        'Error: All data must be provided to create a user',
     })
   }
 
@@ -39,11 +54,14 @@ router.post('/signup', function (req, res) {
     const user = User.getByEmail(email)
     if (user) {
       return res.status(400).json({
-        message: 'Користувач з таким e-mail вже існує',
+        message:
+          'Error: A user with this email is already registered',
       })
     }
 
-    const newUser = User.create(email, password)
+    const isConfirm = false
+
+    const newUser = User.create(email, password, isConfirm)
 
     const session = Session.create(newUser)
 
@@ -51,10 +69,11 @@ router.post('/signup', function (req, res) {
 
     const code = Confirm.getCode(email)
 
+    console.log(newUser)
+
     return res.status(200).json({
-      message: 'Користувач успішно зареєстрований',
+      message: 'User registered successfully',
       session,
-      balance,
       code,
     })
   } catch (e) {
@@ -69,7 +88,7 @@ router.post('/signup-confirm', function (req, res) {
 
   if (!code || !token) {
     return res.status(400).json({
-      message: 'Помилка. Обовʼязкові поля відсутні!',
+      message: 'Error: Required fields are missing',
     })
   }
 
@@ -77,7 +96,7 @@ router.post('/signup-confirm', function (req, res) {
     const session = Session.getByToken(token)
     if (!session) {
       return res.status(400).json({
-        message: 'Помилка. Ви не увійшли в аккаунт',
+        message: 'Error: You are not logged in',
       })
     }
 
@@ -85,13 +104,13 @@ router.post('/signup-confirm', function (req, res) {
 
     if (!email) {
       return res.status(400).json({
-        message: 'Код не існує',
+        message: 'Error: Code does not exist',
       })
     }
 
     if (email !== session.user.email) {
       return res.status(400).json({
-        message: 'Код не дійсний',
+        message: 'Error: Code is invalid',
       })
     }
 
@@ -100,7 +119,7 @@ router.post('/signup-confirm', function (req, res) {
     session.user.isConfirm = true
 
     return res.status(200).json({
-      message: 'Пошта успішно підтверджена',
+      message: 'Email confirmed successfully',
       session,
     })
   } catch (err) {
@@ -115,7 +134,7 @@ router.post('/signin', function (req, res) {
 
   if (!email || !password) {
     return res.status(400).json({
-      message: 'Помилка. Обовʼязкові поля відсутні!',
+      message: 'Error: Required fields are missing',
     })
   }
 
@@ -124,13 +143,13 @@ router.post('/signin', function (req, res) {
     if (!user) {
       return res.status(400).json({
         message:
-          'Помилка. Користувач з таким e-mail не існує',
+          'Error: A user with this email does not exist',
       })
     }
 
     if (user.password !== password) {
       return res.status(400).json({
-        message: 'Помилка. Неправильний пароль',
+        message: 'Error: Incorrect password',
       })
     }
 
@@ -149,7 +168,7 @@ router.post('/signin', function (req, res) {
     )
 
     return res.status(200).json({
-      message: 'Ви увійшли',
+      message: 'You have logged in',
       session,
       code,
     })
@@ -165,7 +184,7 @@ router.post('/recovery', function (req, res) {
 
   if (!email) {
     return res.status(400).json({
-      message: 'Помилка. Обовʼязкові поля відсутні!',
+      message: 'Error: Required fields are missing',
     })
   }
 
@@ -174,7 +193,7 @@ router.post('/recovery', function (req, res) {
     if (!user) {
       return res.status(400).json({
         message:
-          'Помилка. Користувач з таким e-mail не існує',
+          'Error: A user with this email does not exist',
       })
     }
 
@@ -183,7 +202,7 @@ router.post('/recovery', function (req, res) {
     const code = Confirm.getCode(email)
 
     return res.status(200).json({
-      message: 'Код для відновлення паролю відправлено',
+      message: 'Password recovery code has been sent',
       code,
     })
   } catch (err) {
@@ -198,7 +217,7 @@ router.post('/recovery-confirm', function (req, res) {
 
   if (!code || !password) {
     return res.status(400).json({
-      message: 'Помилка. Обовʼязкові поля відсутні!',
+      message: 'Error: Required fields are missing',
     })
   }
 
@@ -206,7 +225,7 @@ router.post('/recovery-confirm', function (req, res) {
     const email = Confirm.getData(Number(code))
     if (!email) {
       return res.status(400).json({
-        message: 'Код не існує',
+        message: 'Error: Code does not exist',
       })
     }
 
@@ -214,7 +233,8 @@ router.post('/recovery-confirm', function (req, res) {
 
     if (!user) {
       return res.status(400).json({
-        message: 'Користувач з таким e-mail не існує',
+        message:
+          'Error: A user with this email does not exist',
       })
     }
     user.password = password
@@ -228,7 +248,7 @@ router.post('/recovery-confirm', function (req, res) {
     )
 
     return res.status(200).json({
-      message: 'Пароль успішно відновлено',
+      message: 'Password successfully recovered',
       session,
     })
   } catch (err) {
@@ -243,7 +263,7 @@ router.post('/recovery-email', function (req, res) {
 
   if (!password || !newEmail) {
     return res.status(400).json({
-      message: 'Помилка. Обовʼязкові поля відсутні!',
+      message: 'Error: Required fields are missing',
     })
   }
 
@@ -252,13 +272,14 @@ router.post('/recovery-email', function (req, res) {
 
     if (!user) {
       return res.status(400).json({
-        message: 'Користувач з таким e-mail не існує',
+        message:
+          'Error: A user with this email does not exist',
       })
     }
 
     if (user.password !== password) {
       return res.status(400).json({
-        message: 'Помилка. Неправильний пароль',
+        message: 'Error: Incorrect password',
       })
     }
 
@@ -274,7 +295,7 @@ router.post('/recovery-email', function (req, res) {
     )
 
     return res.status(200).json({
-      message: 'Email успішно змінено',
+      message: 'Email changed successfully',
       session,
     })
   } catch (err) {
@@ -289,7 +310,7 @@ router.post('/recovery-password', function (req, res) {
 
   if (!oldPassword || !newPassword) {
     return res.status(400).json({
-      message: 'Помилка. Обовʼязкові поля відсутні!',
+      message: 'Error: Required fields are missing',
     })
   }
 
@@ -298,13 +319,14 @@ router.post('/recovery-password', function (req, res) {
 
     if (!user) {
       return res.status(400).json({
-        message: 'Користувач з таким e-mail не існує',
+        message:
+          'Error: A user with this email does not exist',
       })
     }
 
     if (user.password !== oldPassword) {
       return res.status(400).json({
-        message: 'Помилка. Неправильний пароль',
+        message: 'Error: Incorrect password',
       })
     }
 
@@ -317,7 +339,7 @@ router.post('/recovery-password', function (req, res) {
     )
 
     return res.status(200).json({
-      message: 'Пароль успішно відновлено',
+      message: 'Password successfully changed',
     })
   } catch (err) {
     return res.status(400).json({

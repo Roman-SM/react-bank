@@ -7,8 +7,8 @@ const { Transaction } = require('../class/Transaction')
 const { Notification } = require('../class/Notification')
 
 const eventType = {
-  deposit: 'Receipt', // поповнення
-  withdrawal: 'Sending', // списання
+  deposit: 'Receipt',
+  withdrawal: 'Sending',
   sendUser: 'User',
   sendStripe: 'Stripe',
   sendCoinbace: 'Coinbace',
@@ -39,7 +39,7 @@ router.post('/send', function (req, res) {
   if (!sum) {
     return res.status(400).json({
       message:
-        'Потрібно передати всі дані для створення платежу',
+        'Error: All data must be provided to create the payment',
     })
   }
 
@@ -47,23 +47,27 @@ router.post('/send', function (req, res) {
     const senderUser = User.getByEmail(senderEmail)
     if (senderEmail === recipientEmail) {
       return res.status(400).json({
-        message: 'Ви не можете надіслати платіж самі собі.',
+        message:
+          'Error: You cannot send a payment to yourself',
       })
     }
     if (!senderUser) {
       return res.status(400).json({
-        message: 'Відправник з таким e-mail не існує',
+        message:
+          'Error: A sender with this email does not exist',
       })
     }
     if (senderUser.balance < sum) {
       return res.status(400).json({
-        message: 'Недостатньо коштів для переказу',
+        message:
+          'Error: Insufficient funds for the transfer',
       })
     }
     const recipientUser = User.getByEmail(recipientEmail)
     if (!recipientUser) {
       return res.status(400).json({
-        message: 'Отримувач з таким e-mail не існує',
+        message:
+          'Error: A recipient with this email does not exist',
       })
     }
     Transaction.newWithdrawal(
@@ -76,7 +80,7 @@ router.post('/send', function (req, res) {
     Transaction.newReceiving(
       recipientEmail,
       Number(sum),
-      eventType.receiving,
+      eventType.deposit,
       eventType.sendUser,
       recipientUser.balance,
     )
@@ -95,7 +99,7 @@ router.post('/send', function (req, res) {
     )
 
     return res.status(200).json({
-      message: 'Переказ здійснено успішно',
+      message: 'The transfer was completed successfully',
     })
   } catch (e) {
     return res.status(400).json({
@@ -108,15 +112,15 @@ router.post('/recive-coinbase', function (req, res) {
   const { sum, email } = req.body
   if (!sum) {
     return res.status(400).json({
-      message:
-        'Потрібно передати всі дані для створення платежу',
+      message: 'Error: Please enter the payment amount',
     })
   }
   try {
     const user = User.getByEmail(email)
     if (!user) {
       return res.status(400).json({
-        message: 'Користувач з таким e-mail не існує',
+        message:
+          'Error: A user with this email does not exist',
       })
     }
 
@@ -137,7 +141,7 @@ router.post('/recive-coinbase', function (req, res) {
     )
 
     return res.status(200).json({
-      message: 'Кошти були зараховані на ваш рахунок.',
+      message: 'Funds have been credited to your account',
     })
   } catch (e) {
     return res.status(400).json({
@@ -151,15 +155,15 @@ router.post('/recive-stripe', function (req, res) {
 
   if (!sum) {
     return res.status(400).json({
-      message:
-        'Потрібно передати всі дані для створення платежу',
+      message: 'Error: Please enter the payment amount',
     })
   }
   try {
     const user = User.getByEmail(email)
     if (!user) {
       return res.status(400).json({
-        message: 'Користувач з таким e-mail не існує',
+        message:
+          'Error: A user with this email does not exist',
       })
     }
 
@@ -180,7 +184,7 @@ router.post('/recive-stripe', function (req, res) {
     )
 
     return res.status(200).json({
-      message: 'Кошти були зараховані на ваш рахунок.',
+      message: 'Funds have been credited to your account',
     })
   } catch (e) {
     return res.status(400).json({
@@ -196,7 +200,8 @@ router.get('/balance', function (req, res) {
     const email = User.getByEmail(userEmail)
     if (!email) {
       return res.status(400).json({
-        message: 'Користувач з таким Email не існує',
+        message:
+          'Error: A user with this email does not exist',
       })
     }
     const balance = email.balance
@@ -216,7 +221,8 @@ router.get('/transactions-list', function (req, res) {
     const email = User.getByEmail(userEmail)
     if (!email) {
       return res.status(400).json({
-        message: 'Користувач з таким Email не існує',
+        message:
+          'Error: A user with this email does not exist',
       })
     }
     const transactions =
@@ -243,7 +249,7 @@ router.get('/transaction-info', function (req, res) {
     const transactionId = req.headers.authorization
     if (!transactionId) {
       return res.status(400).json({
-        message: 'Ви не передали ID транзакції',
+        message: 'Error: Transaction ID was not provided',
       })
     }
 
@@ -253,7 +259,8 @@ router.get('/transaction-info', function (req, res) {
 
     if (!transaction) {
       return res.status(400).json({
-        message: 'Транзакції з таким ID не існує',
+        message:
+          'Error: A transaction with this ID does not exist',
       })
     }
 
@@ -278,7 +285,8 @@ router.get('/notifications-list', function (req, res) {
     const email = User.getByEmail(userEmail)
     if (!email) {
       return res.status(400).json({
-        message: 'Користувач з таким Email не існує',
+        message:
+          'Error: A user with this email does not exist',
       })
     }
 

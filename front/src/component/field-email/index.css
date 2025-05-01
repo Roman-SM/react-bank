@@ -23,7 +23,7 @@
 .field-email-background.white {
   background-color: #fff;
 }
-.field-email-label.field-email-label-error:invalid {
+.field-email-label.field-email-label-error {
   color: red;
 }
 .field-email-input.field-email-input-error {

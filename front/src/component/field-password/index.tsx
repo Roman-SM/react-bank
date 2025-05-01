@@ -53,7 +53,6 @@ export default function Component({
         }
       ></span>
       {error && <p className="field-password-text-error">{error}</p>}
-      {error && <p className="field-password-text-error">{error}</p>}
     </div>
   );
 }

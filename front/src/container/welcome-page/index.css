@@ -1,6 +1,6 @@
 .welcome-page-container {
   width: 100%;
-  height: 800px;
+  height: 780px;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -24,7 +24,6 @@
 .welcome-page-buttons {
   display: grid;
   gap: 12px;
-  margin-bottom: 46px;
 }
 .welcome-page-buttons-link {
   text-decoration: none;
