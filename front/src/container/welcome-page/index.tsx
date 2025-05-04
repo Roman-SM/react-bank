@@ -5,6 +5,7 @@ import Page from "../../component/page";
 import BackgroundImage from "./background-image.svg";
 import StatusBar from "../../component/status-bar";
 import Safe from "./safe.svg";
+import HomeIndicator from "../../component/home-indicator";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -54,6 +55,7 @@ const WelcomePage = () => {
         description={data.title.description}
       />
       <Buttons />
+      <HomeIndicator />
     </div>
   );
 };

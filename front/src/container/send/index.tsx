@@ -60,7 +60,6 @@ export default function Component() {
           type: REQUEST_ACTION_TYPE.SUCCESS,
           payload: data.message,
         });
-        console.log(state.data);
         resetForm();
       } else {
         dispatch({

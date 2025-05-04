@@ -8,6 +8,7 @@ import FieldPassword from "../../component/field-password";
 import FieldEmail from "../../component/field-email";
 import Button from "../../component/button";
 import Link from "../../component/link";
+import HomeIndicator from "../../component/home-indicator";
 import { useEffect, useReducer } from "react";
 import { useValidate } from "../../util/validation";
 import { useNavigate } from "react-router-dom";
@@ -121,6 +122,7 @@ export default function Component() {
           <Alert status={state.status} message={state.message} />
         )}
       </Form>
+      <HomeIndicator />
     </Page>
   );
 }

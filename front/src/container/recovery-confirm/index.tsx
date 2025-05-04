@@ -7,6 +7,7 @@ import FieldCode from "../../component/field-code";
 import Form from "../../component/form";
 import Button from "../../component/button";
 import FieldPassword from "../../component/field-password";
+import HomeIndicator from "../../component/home-indicator";
 import { Alert } from "../../component/load";
 import { useEffect, useReducer } from "react";
 import { useValidate } from "../../util/validation";
@@ -106,6 +107,7 @@ export default function Component() {
           <Alert status={states.status} message={states.message} />
         )}
       </Form>
+      <HomeIndicator />
     </Page>
   );
 }

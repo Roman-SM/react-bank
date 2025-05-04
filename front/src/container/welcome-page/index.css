@@ -1,9 +1,10 @@
 .welcome-page-container {
   width: 100%;
-  height: 780px;
+  height: 765px;
   display: flex;
   flex-direction: column;
   text-decoration: none;
+  overflow: hidden;
 }
 .welcome-page-background-image {
   position: absolute;
@@ -20,6 +21,7 @@
   position: absolute;
   top: 165px;
   left: -24px;
+  box-sizing: border-box;
 }
 .welcome-page-buttons {
   display: grid;

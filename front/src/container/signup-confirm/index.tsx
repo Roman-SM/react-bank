@@ -6,6 +6,7 @@ import BackButton from "../../component/back-button";
 import StatusBar from "../../component/status-bar";
 import FieldCode from "../../component/field-code";
 import Form from "../../component/form";
+import HomeIndicator from "../../component/home-indicator";
 import { useAuth } from "../../util/useAuth";
 import { useValidate } from "../../util/validation";
 import { useEffect, useReducer } from "react";
@@ -99,6 +100,7 @@ export default function Component() {
           <Alert status={state.status} message={state.message} />
         )}
       </Form>
+      <HomeIndicator />
     </Page>
   );
 }
