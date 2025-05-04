@@ -151,7 +151,7 @@ export default function Component() {
         </Fragment>
       )}
       {state.status === REQUEST_ACTION_TYPE.SUCCESS && (
-        <Fragment>
+        <div className="balance-transactions-list-scroll">
           {state.data.isEmpty ? (
             <Alert message="Список транзакцій пустий" />
           ) : (
@@ -165,7 +165,7 @@ export default function Component() {
               </Link>
             ))
           )}
-        </Fragment>
+        </div>
       )}
     </Page>
   );

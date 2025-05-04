@@ -33,3 +33,7 @@
   color: #1d1d1f;
   text-decoration: none;
 }
+.balance-transactions-list-scroll {
+  width: 373px;
+  overflow-y: auto;
+}

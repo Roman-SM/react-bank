@@ -84,7 +84,7 @@ export default function Component() {
         </Fragment>
       )}
       {state.status === REQUEST_ACTION_TYPE.SUCCESS && (
-        <Fragment>
+        <div className="notifications-list-scroll">
           {state.data.isEmpty ? (
             <Alert message="Список сповіщень пустий" />
           ) : (
@@ -94,7 +94,7 @@ export default function Component() {
               </Fragment>
             ))
           )}
-        </Fragment>
+        </div>
       )}
     </Page>
   );
