@@ -36,12 +36,12 @@ export default function Component() {
   const getTransactions = useCallback(async () => {
     dispatch({ type: REQUEST_ACTION_TYPE.PROGRESS });
     try {
-      const res = await fetch("http://localhost:4000/transaction-info", {
-        method: "GET",
-        headers: {
-          Authorization: `${transactionId}`,
-        },
-      });
+      const res = await fetch(
+        `http://localhost:4000/transaction-info${transactionId}`,
+        {
+          method: "GET",
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         dispatch({
