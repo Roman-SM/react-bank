@@ -37,7 +37,7 @@ export default function Component() {
     dispatch({ type: REQUEST_ACTION_TYPE.PROGRESS });
     try {
       const res = await fetch(
-        `http://localhost:4000/transaction-info${transactionId}`,
+        `http://localhost:4000/transaction-info/${transactionId}`,
         {
           method: "GET",
         }
