@@ -1,0 +1,69 @@
+@import "@shared/ui/styles/colors.css";
+
+/* Field base style */
+.field-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.field-password {
+  position: relative;
+}
+.field-input {
+  border: 1px solid var(--grey-light);
+  border-radius: 12px;
+  padding: 20px 16px;
+  height: 54px;
+  transition: border-color 0.3s;
+}
+.field-label {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* Field active style */
+.field-input:hover {
+  border-color: var(--grey-border-dark);
+}
+.field-input:focus {
+  border-color: var(--purple);
+}
+.field-background.white {
+  background-color: var(--white);
+}
+
+/* Field errors */
+.field-label.field-label-error {
+  color: var(--red);
+}
+.field-input.field-input-error {
+  border: 1px solid var(--red);
+}
+.field-text-error {
+  margin-top: 10px;
+  color: var(--red);
+}
+
+/* Field icon */
+.field-password-icon-hide {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background-image: url("../icons/password-hide.svg");
+  background-size: cover;
+  position: absolute;
+  right: 16px;
+  top: 38px;
+  cursor: pointer;
+}
+.field-password-icon-show {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background-image: url("../icons/password-show.svg");
+  background-size: cover;
+  position: absolute;
+  right: 16px;
+  top: 38px;
+  cursor: pointer;
+}

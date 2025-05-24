@@ -1,0 +1,12 @@
+@import "@shared/ui/styles/colors.css";
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+.link-text {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--purple-light);
+}

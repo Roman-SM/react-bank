@@ -1,0 +1,49 @@
+@import "@shared/ui/styles/colors.css";
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 20px 40px;
+  width: 353px;
+  height: 56px;
+  font-weight: 500;
+}
+.btn-disabled {
+  border: 0.1rem solid var(--grey-light);
+  background-color: var(--white-hover);
+}
+.btn.filled {
+  background-color: var(--purple-light);
+  color: var(--white);
+  border: none;
+}
+.btn.filled:hover {
+  background-color: var(--purple-dark);
+  color: var(--grey-light);
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+.btn.outline {
+  background-color: var(--white);
+  color: var(--purple-light);
+  border: 0.1rem solid var(--purple-light);
+}
+.btn.outline:hover {
+  background-color: var(--white-hover);
+  border-color: var(--purple);
+  color: var(--purple);
+  transition: all 0.3s ease-in-out;
+}
+.btn.outline-red {
+  background-color: var(--white);
+  color: var(--red);
+  border: 1px solid var(--red);
+}
+.btn.outline-red:hover {
+  background-color: var(--red-hover-background);
+  border-color: var(--red-hover);
+  color: var(--red-hover);
+  transition: all 0.3s ease-in-out;
+}

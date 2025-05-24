@@ -1,0 +1,49 @@
+@import "@shared/ui/styles/colors.css";
+
+/* Alert style */
+.alert {
+  border: none;
+  border-radius: 10px;
+  padding: 16px 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.alert--error-email,
+.alert--error-password,
+.alert--error {
+  background-color: var(--yellow-background);
+  color: var(--yellow-text);
+}
+.alert--progress {
+  border-color: var(--purple-light);
+  color: var(--purple);
+}
+.alert--default {
+  font-size: 18px;
+  background-color: var(--grey-light);
+  color: var(--black-light);
+  max-width: 353px;
+}
+
+/* Skeleton style */
+.skeleton {
+  display: grid;
+  grid-template-rows: repeat(3, 48px);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.skeleton__item {
+  animation: skeleton-animation 1s infinite alternate;
+  border-radius: 8px;
+}
+@keyframes skeleton-animation {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}

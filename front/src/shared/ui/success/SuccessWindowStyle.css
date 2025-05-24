@@ -1,0 +1,27 @@
+@import "../styles/colors.css";
+
+.modal-window {
+  width: 393px;
+  height: 852px;
+  background-color: #00000024;
+  border: none;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.modal-icon {
+  width: 100px;
+  height: 100px;
+}
+.modal-title {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--purple-light);
+}

@@ -1,0 +1,8 @@
+.status-bar-container {
+  display: flex;
+  justify-content: center;
+}
+.status-bar-img {
+  width: 393px;
+  z-index: 2;
+}

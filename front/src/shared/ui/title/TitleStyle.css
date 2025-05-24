@@ -1,0 +1,34 @@
+@import "@shared/ui/styles/colors.css";
+
+.title-container {
+  padding-top: 54px;
+  display: grid;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.title-container-text {
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+}
+.title-container-description {
+  font-size: 14px;
+  text-align: center;
+  color: var(--grey-text);
+}
+.title-welcome-page-container {
+  padding-top: 54px;
+  position: relative;
+  gap: 16px;
+}
+.title-welcome-page-text {
+  font-weight: 600;
+  font-size: 42px;
+  text-align: center;
+  color: var(--white);
+}
+.title-welcome-page-description {
+  font-size: 20px;
+  text-align: center;
+  color: var(--white);
+}

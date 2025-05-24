@@ -1,0 +1,22 @@
+:root {
+  --black: #121212;
+  --black-light: #363636;
+  --black-text: #1d1d1f;
+  --black-background: #1e1e1e;
+  --white: #ffffff;
+  --white-hover: #f2f2f2;
+  --green: #24b277;
+  --red: #f23152;
+  --red-hover: #b6001e;
+  --red-hover-background: #fbf4f5;
+  --purple: #253ebf;
+  --purple-light: #5063bf;
+  --purple-dark: #394890;
+  --yellow-text: #f2883d;
+  --yellow-background: #f2883d1a;
+  --yellow-background-light: #f9e4d8;
+  --grey-light: #e9e8eb;
+  --grey-text: #939199;
+  --grey-dark: #808080;
+  --grey-background: #f3f5ff;
+}

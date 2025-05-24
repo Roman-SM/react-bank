@@ -1,0 +1,21 @@
+@import "@shared/ui/styles/colors.css";
+
+.page {
+  margin: 0 auto;
+  width: 393px;
+  height: 852px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px 0 20px;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--white);
+}
+.page-background.gray {
+  background-color: var(--grey-background);
+}
+.page-background.image {
+  background-image: url("../icons/back-welcome-page.svg");
+  background-repeat: no-repeat;
+}
