@@ -6,7 +6,7 @@ import {
   REQUEST_ACTION_TYPE,
 } from "@shared/config/request";
 import { backendBaseUrl } from "@shared/config";
-import { notificationsConvertData } from "../model/NotificationConvertData";
+import { notificationsConvertData } from "@shared/data";
 
 export function useNotificationInfo() {
   const [state, dispatch] = useReducer(requestReducer, requestInitialState);

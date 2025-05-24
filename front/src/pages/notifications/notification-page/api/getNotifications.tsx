@@ -6,7 +6,7 @@ import {
 } from "@shared/config/request";
 import { useEffect, useReducer } from "react";
 import { useAuth } from "@shared/lib/guards/UseAuth";
-import { notificationsConvertData } from "../model/NotificationConvertData";
+import { notificationsConvertDataList } from "@shared/data";
 
 export function useNotifications() {
   const [state, dispatch] = useReducer(requestReducer, requestInitialState);
@@ -25,7 +25,7 @@ export function useNotifications() {
         if (res.ok) {
           dispatch({
             type: REQUEST_ACTION_TYPE.SUCCESS,
-            payload: notificationsConvertData(data),
+            payload: notificationsConvertDataList(data),
           });
         } else {
           dispatch({ type: REQUEST_ACTION_TYPE.ERROR, payload: data.message });
