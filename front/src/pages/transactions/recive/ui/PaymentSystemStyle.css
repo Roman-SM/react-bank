@@ -1,0 +1,40 @@
+@import "@shared/ui/styles/colors.css";
+
+.payment-system-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.payment-system-title {
+  font-weight: 500;
+}
+
+.payment-system-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  background-color: var(--white);
+  padding: 16px;
+}
+.payment-system-left:hover {
+  background-color: #00000009;
+  transition: all 0.3s ease-in-out;
+}
+.payment-system-left-disabled {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  background-color: var(--white);
+  padding: 16px;
+}
+
+.payment-system-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.payment-system-text {
+  font-weight: 500;
+}

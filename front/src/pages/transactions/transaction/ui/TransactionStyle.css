@@ -1,0 +1,55 @@
+@import "@shared/ui/styles/colors.css";
+
+.transactions-list-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  max-width: 353px;
+}
+.transactions-list-left {
+  display: flex;
+  gap: 12px;
+}
+.transactions-list-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+.transactions-list-title {
+  font-weight: 500;
+}
+.transactions-list-descr {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--grey-text);
+}
+.transactions-list-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.transactions-list-date::after {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 2px;
+  border-radius: 4px;
+  background-color: var(--grey-text);
+}
+.transactions-list-Receipt {
+  font-weight: 500;
+  color: var(--green);
+}
+.transactions-list-Receipt::before {
+  content: "+$";
+}
+.transactions-list-Sending {
+  font-weight: 500;
+}
+.transactions-list-Sending::before {
+  content: "-$";
+}

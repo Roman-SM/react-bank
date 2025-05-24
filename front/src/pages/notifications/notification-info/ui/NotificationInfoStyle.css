@@ -1,0 +1,35 @@
+@import "@shared/ui/styles/colors.css";
+
+.notification-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.notification-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+.notifications-sum-deposit::before {
+  content: "+$";
+}
+.notifications-sum-Recive::before {
+  content: "+$";
+}
+.notifications-sum-Send::before {
+  content: "-$";
+}
+.notification-container-info {
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  background-color: var(--white);
+}
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+}
+.notification-item-info {
+  font-size: 14px;
+  text-align: center;
+}
