@@ -5,42 +5,9 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const dotenv = require('dotenv')
 
-// const webpack = require('webpack')
-// const webpackDevMiddleware = require('webpack-dev-middleware')
-// const webpackHotMiddleware = require('webpack-hot-middleware')
-// const config = require('./webpack.config.js')
-
-// const hbs = require('express-handlebars')
-
-// const compiler = webpack(config)
 const app = express()
 
 dotenv.config()
-
-// app.use(
-//   webpackDevMiddleware(compiler, {
-//     publicPath: config.output.publicPath,
-//   }),
-// )
-
-// app.use(webpackHotMiddleware(compiler))
-
-// app.set('view engine', 'hbs')
-// app.set('views', 'src/container')
-// app.engine(
-//   'hbs',
-//   hbs.engine({
-//     extname: 'hbs',
-//     defaultLayout: 'default/index',
-//     layoutsDir: __dirname + '/src/layout/',
-//     partialsDir: {
-//       dir: __dirname + '/src/component/',
-//       rename: (filePath) => {
-//         return `${filePath.split('/')[0]}`
-//       },
-//     },
-//   }),
-// )
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
