@@ -5,17 +5,18 @@ import {
   requestInitialState,
   requestReducer,
 } from "@shared/config/request";
-import { convertDataTransactions } from "@shared/data/convertData";
-import { useEffect, useReducer } from "react";
+import { convertDataTransactionsList } from "@shared/data/convertData";
+import { useEffect, useReducer, useRef } from "react";
 
-export function useTransaction() {
+export function useBalanceInfo() {
   const [state, dispatch] = useReducer(requestReducer, requestInitialState);
   const { states } = useAuth();
+  const balance = useRef(0);
 
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const res = await fetch(`${backendBaseUrl}/transactions-list`, {
+        const res = await fetch(`${backendBaseUrl}/balance-info`, {
           method: "GET",
           headers: {
             Authorization: `${states.user?.email}`,
@@ -25,8 +26,9 @@ export function useTransaction() {
         if (res.ok) {
           dispatch({
             type: REQUEST_ACTION_TYPE.SUCCESS,
-            payload: convertDataTransactions(data),
+            payload: convertDataTransactionsList(data.transactions),
           });
+          balance.current = data.balance;
         } else {
           dispatch({ type: REQUEST_ACTION_TYPE.ERROR, payload: data.message });
         }
@@ -40,5 +42,5 @@ export function useTransaction() {
     fetchBalance();
   }, [states.user?.email]);
 
-  return state;
+  return { state, balance };
 }

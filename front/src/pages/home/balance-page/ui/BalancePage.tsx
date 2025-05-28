@@ -5,13 +5,11 @@ import { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Alert, Skeleton } from "@shared/ui/load/Load";
 import { HeaderBalance } from "./HeaderBalance";
-import { useBalance } from "../api/getBalance";
-import { useTransaction } from "../api/getTransactions";
+import { useBalanceInfo } from "../api/getBalanceInfo";
 import { REQUEST_ACTION_TYPE } from "@shared/config";
 
 export default function BalancePage() {
-  const { balance } = useBalance();
-  const state = useTransaction();
+  const { state, balance } = useBalanceInfo();
   useEffect(() => {
     document.title = "Balance Page";
   }, []);
@@ -19,7 +17,7 @@ export default function BalancePage() {
   return (
     <Page>
       <StatusBar img="statusBarWhite" />
-      <HeaderBalance balance={balance} />
+      <HeaderBalance balance={balance.current} />
       {state.status === REQUEST_ACTION_TYPE.PROGRESS && (
         <Fragment>
           <Skeleton />
