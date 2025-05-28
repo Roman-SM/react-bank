@@ -36,9 +36,6 @@ export default function NotificationsPage() {
               >
                 <Notification {...item} />
               </Link>
-              // <Fragment key={item.id}>
-              //   <Notification {...item} />
-              // </Fragment>
             ))
           )}
         </div>

@@ -10,12 +10,10 @@ export default function NotificationInfoPage() {
   useEffect(() => {
     document.title = "Notification";
   }, []);
-  console.log(state.data);
-  console.log(1);
   return (
     <Page variant="gray">
       <StatusBar />
-      <BackButton title="Transaction" retreat="retreat" />
+      <BackButton title="Notification" retreat="retreat" />
       {state.status === REQUEST_ACTION_TYPE.PROGRESS && <Skeleton />}
       {state.status === REQUEST_ACTION_TYPE.ERROR && (
         <Alert status={state.status} message={state.message} />
