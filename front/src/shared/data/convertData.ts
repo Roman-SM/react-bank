@@ -14,17 +14,15 @@ export const notificationsConvertDataList = (raw: { notifications?: any }) => {
     isEmpty: list.length === 0,
   };
 };
-export const convertDataTransactions = (raw: { transactions?: any }) => {
-  const list = Array.isArray(raw.transactions)
-    ? [...raw.transactions].reverse()
-    : [];
+export const convertDataTransactions = (raw: { transaction?: any }) => {
+  const list = raw.transaction ? [raw.transaction] : [];
   return {
     list,
     isEmpty: list.length === 0,
   };
 };
-export const convertDataTransactionsList = (raw: { transaction: any }) => {
-  const list = raw.transaction ? [raw.transaction] : [];
+export const convertDataTransactionsList = (transactions: any) => {
+  const list = Array.isArray(transactions) ? [...transactions].reverse() : [];
   return {
     list,
     isEmpty: list.length === 0,
