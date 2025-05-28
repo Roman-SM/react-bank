@@ -6,7 +6,7 @@ import {
   REQUEST_ACTION_TYPE,
 } from "@shared/config/request";
 import { backendBaseUrl } from "@shared/config";
-import { convertDataTransactionsList } from "@shared/data/convertData";
+import { convertDataTransactions } from "@shared/data/convertData";
 
 export function useTransactionInfo() {
   const [state, dispatch] = useReducer(requestReducer, requestInitialState);
@@ -26,7 +26,7 @@ export function useTransactionInfo() {
         if (res.ok) {
           dispatch({
             type: REQUEST_ACTION_TYPE.SUCCESS,
-            payload: convertDataTransactionsList(data),
+            payload: convertDataTransactions(data),
           });
         } else {
           dispatch({ type: REQUEST_ACTION_TYPE.ERROR, payload: data.message });
